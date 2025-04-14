@@ -10,6 +10,7 @@ import (
 	"fmt"
 	"html/template"
 	"io"
+	"net/http"
 
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
@@ -65,7 +66,7 @@ func main() {
 	conf := config.ReadConfig()
 
 	e.GET("/", func(context echo.Context) error {
-		return context.Render(200, "index", State{Buttons: conf.Buttons})
+		return context.Render(http.StatusOK, "index", State{Buttons: conf.Buttons})
 	})
 
 	e.POST("/notify", func(context echo.Context) error {
@@ -80,9 +81,9 @@ func main() {
 		}
 		if err := notificationService.Notify(msg); err != nil {
 			logger.Error().Err(err).Msg("Error while creating notification")
-			return context.Render(500, "message", State{Buttons: conf.Buttons, Message: "Error"})
+			return context.Render(http.StatusInternalServerError, "message", State{Buttons: conf.Buttons, Message: "Error"})
 		}
-		return context.Render(200, "message", State{Buttons: conf.Buttons, Message: jokes.GetJoke()})
+		return context.Render(http.StatusOK, "message", State{Buttons: conf.Buttons, Message: jokes.GetJoke()})
 	})
 	log.Info().Msgf("Starting server on port %s", envConfig.Port)
 	log.Fatal().Err(e.Start(fmt.Sprintf(":%s", envConfig.Port))).Msg("Error while starting HTTP server")
