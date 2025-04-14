@@ -8,7 +8,7 @@ import (
 type Env struct {
 	NotificationURL  string `env:"NOTIFICATION_URL,required"`
 	NotificationType string `env:"NOTIFICATION_TYPE,required"`
-	Port             string `env:"PORT" envDefault:"9000"`
+	Port             string `env:"PORT"                       envDefault:"9000"`
 }
 
 func Load() *Env {

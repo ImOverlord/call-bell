@@ -2,24 +2,26 @@ package notification
 
 import (
 	"ImOverlord/call-bell/internal/metrics"
+	"context"
 	"fmt"
 	"net/http"
 	"strings"
 )
 
 type Slack struct {
-	Url string
+	URL string
 }
 
 func NewSlackNotification(url string) Notification {
 	return &Slack{
-		Url: url,
+		URL: url,
 	}
 }
 
 func (slack *Slack) Notify(msg string) error {
-	payload := strings.NewReader("{\n  \"message\": \"Attention has been requested\",\n  \"success\": \"true\"\n}")
-	req, err := http.NewRequest("POST", slack.Url, payload)
+	text := fmt.Sprintf("{\n  \"text\": \"@channel %s\",\n  \"success\": \"true\"\n}", msg)
+	payload := strings.NewReader(text)
+	req, err := http.NewRequestWithContext(context.Background(), http.MethodPost, slack.URL, payload)
 	if err != nil {
 		metrics.NotificationErrorCount.Inc()
 		return err
@@ -31,6 +33,7 @@ func (slack *Slack) Notify(msg string) error {
 		metrics.NotificationErrorCount.Inc()
 		return err
 	}
+	defer res.Body.Close()
 
 	if res.StatusCode != http.StatusOK {
 		metrics.NotificationErrorCount.Inc()

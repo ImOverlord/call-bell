@@ -15,9 +15,9 @@ func GetContextLogger(c echo.Context) zerolog.Logger {
 		logger.Warn().Msg("Failed to fetch logger from Context")
 	}
 
-	RequestID, ok := c.Get("RequestID").(string)
+	requestID, ok := c.Get("RequestID").(string)
 	if ok {
-		logger = logger.With().Str("RequestID", RequestID).Logger()
+		logger = logger.With().Str("RequestID", requestID).Logger()
 	}
 	return logger
 }
@@ -32,7 +32,7 @@ func AddLogger() echo.MiddlewareFunc {
 	}
 }
 
-func LoggerMiddleware() echo.MiddlewareFunc {
+func Middleware() echo.MiddlewareFunc {
 	return middleware.RequestLoggerWithConfig(middleware.RequestLoggerConfig{
 		LogURI:    true,
 		LogStatus: true,

@@ -21,7 +21,7 @@ type Template struct {
 	templates *template.Template
 }
 
-func (t *Template) Render(w io.Writer, name string, data any, c echo.Context) error {
+func (t *Template) Render(w io.Writer, name string, data any, _ echo.Context) error {
 	return t.templates.ExecuteTemplate(w, name, data)
 }
 
@@ -48,16 +48,14 @@ func main() {
 		},
 	}))
 	e.Use(logger.AddLogger())
-	e.Use(logger.LoggerMiddleware())
+	e.Use(logger.Middleware())
 	e.Static("/", "views")
 	e.Renderer = newTemplates()
 	metrics.Handler(e)
 
 	var notificationService notification.Notification
 	switch envConfig.NotificationType {
-	case "mattermost":
-		notificationService = notification.NewMattermostNotification(envConfig.NotificationURL)
-	case "slack":
+	case "mattermost", "slack":
 		notificationService = notification.NewSlackNotification(envConfig.NotificationURL)
 	default:
 		log.Fatal().Msg("NotificationType is invalid")
@@ -81,9 +79,17 @@ func main() {
 		}
 		if err := notificationService.Notify(msg); err != nil {
 			logger.Error().Err(err).Msg("Error while creating notification")
-			return context.Render(http.StatusInternalServerError, "message", State{Buttons: conf.Buttons, Message: "Error"})
+			return context.Render(
+				http.StatusInternalServerError,
+				"message",
+				State{Buttons: conf.Buttons, Message: "Error"},
+			)
 		}
-		return context.Render(http.StatusOK, "message", State{Buttons: conf.Buttons, Message: jokes.GetJoke()})
+		joke, err := jokes.GetJoke()
+		if err != nil {
+			logger.Error().Err(err).Msg("Failed to generate a joke")
+		}
+		return context.Render(http.StatusOK, "message", State{Buttons: conf.Buttons, Message: joke})
 	})
 	log.Info().Msgf("Starting server on port %s", envConfig.Port)
 	log.Fatal().Err(e.Start(fmt.Sprintf(":%s", envConfig.Port))).Msg("Error while starting HTTP server")
