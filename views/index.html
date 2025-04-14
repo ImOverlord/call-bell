@@ -1,0 +1,40 @@
+{{ block "index" . }}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Call Bell</title>
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔔</text></svg>">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://unpkg.com/htmx.org/dist/htmx.min.js"></script>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+      {{ template "message" .}}
+      <div class="container">
+      {{ range .Buttons }}
+        {{ template "button" . }}
+      {{ end }}
+      </div>
+    </body>
+</html>
+{{ end }}
+{{ define "button"  }}
+<div class="item">
+  <button hx-post="/notify?type={{ .Type }}" hx-target="#message" hx-indicator="#request-loading-{{ .Type }}">
+    <div class="request-loading" id="request-loading-{{ .Type }}" class="htmx-indicator">
+      <div class="loader"></div>
+      <div class="loader-text">Sending Request</div>
+    </div>
+    <div class="request-text" id="request-text-{{ .Type }}">{{ .Text }}</div>
+  </button>
+</div>
+{{ end }}
+
+{{ block "message" .}}
+<div id="message" >
+  {{ if .Message}}
+  <p class="center"> {{ .Message }}</a>
+  {{ end }}
+</div>
+{{ end }}
