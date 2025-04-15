@@ -1,19 +1,19 @@
 <div align="center">
   <h1>Call Bell</h1>
   <br />
-  <a href="https://github.com/ImOverlord/call-bell-test/issues/new?assignees=&labels=bug&template=01_BUG_REPORT.md&title=bug%3A+">Report a Bug</a>
+  <a href="https://github.com/ImOverlord/call-bell/issues/new?assignees=&labels=bug&template=01_BUG_REPORT.md&title=bug%3A+">Report a Bug</a>
   ·
-  <a href="https://github.com/ImOverlord/call-bell-test/issues/new?assignees=&labels=enhancement&template=02_FEATURE_REQUEST.md&title=feat%3A+">Request a Feature</a>
+  <a href="https://github.com/ImOverlord/call-bell/issues/new?assignees=&labels=enhancement&template=02_FEATURE_REQUEST.md&title=feat%3A+">Request a Feature</a>
   .
-  <a href="https://github.com/ImOverlord/call-bell-test/issues/new?assignees=&labels=question&template=04_SUPPORT_QUESTION.md&title=support%3A+">Ask a Question</a>
+  <a href="https://github.com/ImOverlord/call-bell/issues/new?assignees=&labels=question&template=04_SUPPORT_QUESTION.md&title=support%3A+">Ask a Question</a>
 </div>
 
 <div align="center">
 <br />
 
-[![Project license](https://img.shields.io/github/license/ImOverlord/call-bell-test.svg?style=flat-square)](LICENSE)
+[![Project license](https://img.shields.io/github/license/ImOverlord/call-bell.svg?style=flat-square)](LICENSE)
 
-[![Pull Requests welcome](https://img.shields.io/badge/PRs-welcome-ff69b4.svg?style=flat-square)](https://github.com/ImOverlord/call-bell-test/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22)
+[![Pull Requests welcome](https://img.shields.io/badge/PRs-welcome-ff69b4.svg?style=flat-square)](https://github.com/ImOverlord/call-bell/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22)
 [![code with love by ImOverlord](https://img.shields.io/badge/%3C%2F%3E%20with%20%E2%99%A5%20by-ImOverlord-ff1414.svg?style=flat-square)](https://github.com/ImOverlord)
 
 </div>
