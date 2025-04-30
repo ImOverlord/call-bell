@@ -1,0 +1,14 @@
+{
+    "buttons": [
+        {
+            "type": "attention",
+            "text": "\u2728Attention\u2728",
+            "message": "Attention has been requested"
+        },
+        {
+            "type": "hungry",
+            "text": "\ud83d\ude2eHungry\ud83d\ude0b",
+            "message": "Food has been requested"
+        }
+    ]
+}
