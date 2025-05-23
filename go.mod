@@ -4,7 +4,7 @@ go 1.23.0
 
 require (
 	github.com/caarlos0/env/v6 v6.10.1
-	github.com/labstack/echo/v4 v4.13.3
+	github.com/labstack/echo/v4 v4.13.4
 	github.com/spf13/viper v1.20.1
 )
 
