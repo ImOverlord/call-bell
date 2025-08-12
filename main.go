@@ -57,6 +57,8 @@ func main() {
 	switch envConfig.NotificationType {
 	case "mattermost", "slack":
 		notificationService = notification.NewSlackNotification(envConfig.NotificationURL)
+	case "ntfy":
+		notificationService = notification.NewNtfyNotification(envConfig.NotificationURL)
 	default:
 		log.Fatal().Msg("NotificationType is invalid")
 	}
