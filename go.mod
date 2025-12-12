@@ -1,10 +1,10 @@
 module ImOverlord/call-bell
 
-go 1.23.0
+go 1.24.0
 
 require (
 	github.com/caarlos0/env/v6 v6.10.1
-	github.com/labstack/echo/v4 v4.13.3
+	github.com/labstack/echo/v4 v4.14.0
 	github.com/spf13/viper v1.20.1
 )
 
@@ -39,9 +39,9 @@ require (
 	github.com/rs/zerolog v1.34.0
 	github.com/valyala/bytebufferpool v1.0.0 // indirect
 	github.com/valyala/fasttemplate v1.2.2 // indirect
-	golang.org/x/crypto v0.38.0 // indirect
-	golang.org/x/net v0.40.0 // indirect
-	golang.org/x/sys v0.33.0 // indirect
-	golang.org/x/text v0.25.0 // indirect
-	golang.org/x/time v0.11.0 // indirect
+	golang.org/x/crypto v0.46.0 // indirect
+	golang.org/x/net v0.48.0 // indirect
+	golang.org/x/sys v0.39.0 // indirect
+	golang.org/x/text v0.32.0 // indirect
+	golang.org/x/time v0.14.0 // indirect
 )
